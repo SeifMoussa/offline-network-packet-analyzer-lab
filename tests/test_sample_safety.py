@@ -37,11 +37,15 @@ def test_sample_domains_are_example_or_test_domains() -> None:
 
     for match in DOMAIN_PATTERN.findall(content):
         candidate = match.lower()
+        candidate_is_ip = False
         try:
             ip_address(candidate)
-            continue
         except ValueError:
-            pass
+            candidate_is_ip = False
+        else:
+            candidate_is_ip = True
+        if candidate_is_ip:
+            continue
 
         if candidate.replace(".", "").isdigit():
             continue

@@ -195,11 +195,15 @@ def _check_indicator_safety() -> list[str]:
 
     for match in DOMAIN_PATTERN.findall(content):
         domain = match.lower()
+        domain_is_ip = False
         try:
             ip_address(domain)
-            continue
         except ValueError:
-            pass
+            domain_is_ip = False
+        else:
+            domain_is_ip = True
+        if domain_is_ip:
+            continue
         if all(part.isdigit() for part in domain.split(".")):
             continue
         if _domain_is_allowed(domain):
