@@ -1,0 +1,1152 @@
+{
+  "alerts": [
+    {
+      "category": "dns",
+      "confidence": "high",
+      "description": "Detects DNS-like queries to synthetic suspicious .test domains.",
+      "destination_ip": null,
+      "destination_port": null,
+      "evidence": "Synthetic query or host matched suspicious-lab.test",
+      "guidance": "Review synthetic DNS logs and confirm whether the .test query was intentionally included in the lab scenario.",
+      "metadata": {},
+      "protocol": null,
+      "risk_level": "low",
+      "rule_id": "DNS-001",
+      "score": 25,
+      "scoring_factors": {
+        "base": 20,
+        "confidence": "high",
+        "confidence_adjustment": 5,
+        "severity": "low"
+      },
+      "scoring_reason": "Severity low with high confidence produced score 25.",
+      "severity": "low",
+      "source_ip": "10.0.0.16",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\dns_queries.csv",
+      "synthetic": true,
+      "title": "DNS query to suspicious .test domain"
+    },
+    {
+      "category": "dns",
+      "confidence": "high",
+      "description": "Detects DNS-like queries to synthetic suspicious .test domains.",
+      "destination_ip": null,
+      "destination_port": null,
+      "evidence": "Synthetic query or host matched beacon-check.test",
+      "guidance": "Review synthetic DNS logs and confirm whether the .test query was intentionally included in the lab scenario.",
+      "metadata": {},
+      "protocol": null,
+      "risk_level": "low",
+      "rule_id": "DNS-001",
+      "score": 25,
+      "scoring_factors": {
+        "base": 20,
+        "confidence": "high",
+        "confidence_adjustment": 5,
+        "severity": "low"
+      },
+      "scoring_reason": "Severity low with high confidence produced score 25.",
+      "severity": "low",
+      "source_ip": "10.0.0.17",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\dns_queries.csv",
+      "synthetic": true,
+      "title": "DNS query to suspicious .test domain"
+    },
+    {
+      "category": "dns",
+      "confidence": "high",
+      "description": "Detects DNS-like queries to synthetic suspicious .test domains.",
+      "destination_ip": "203.0.113.23",
+      "destination_port": null,
+      "evidence": "Synthetic query or host matched suspicious-lab.test",
+      "guidance": "Review synthetic DNS logs and confirm whether the .test query was intentionally included in the lab scenario.",
+      "metadata": {},
+      "protocol": null,
+      "risk_level": "low",
+      "rule_id": "DNS-001",
+      "score": 25,
+      "scoring_factors": {
+        "base": 20,
+        "confidence": "high",
+        "confidence_adjustment": 5,
+        "severity": "low"
+      },
+      "scoring_reason": "Severity low with high confidence produced score 25.",
+      "severity": "low",
+      "source_ip": "10.0.0.23",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\http_events.txt",
+      "synthetic": true,
+      "title": "DNS query to suspicious .test domain"
+    },
+    {
+      "category": "dns",
+      "confidence": "high",
+      "description": "Detects DNS-like queries to synthetic suspicious .test domains.",
+      "destination_ip": "203.0.113.41",
+      "destination_port": 53,
+      "evidence": "Synthetic query or host matched resolver-check.test",
+      "guidance": "Review synthetic DNS logs and confirm whether the .test query was intentionally included in the lab scenario.",
+      "metadata": {},
+      "protocol": "TCP",
+      "risk_level": "low",
+      "rule_id": "DNS-001",
+      "score": 25,
+      "scoring_factors": {
+        "base": 20,
+        "confidence": "high",
+        "confidence_adjustment": 5,
+        "severity": "low"
+      },
+      "scoring_reason": "Severity low with high confidence produced score 25.",
+      "severity": "low",
+      "source_ip": "10.0.0.41",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\mixed_packet_events.json",
+      "synthetic": true,
+      "title": "DNS query to suspicious .test domain"
+    },
+    {
+      "category": "flow",
+      "confidence": "medium",
+      "description": "Detects synthetic flows with byte totals above a configured threshold.",
+      "destination_ip": "192.0.2.42",
+      "destination_port": 9443,
+      "evidence": "Synthetic flow 10.0.0.42 -> 192.0.2.42 totaled 250000 bytes",
+      "guidance": "Compare the synthetic byte volume with expected lab behavior and review proxy or endpoint telemetry if available.",
+      "metadata": {
+        "event_count": 1,
+        "total_bytes": 250000
+      },
+      "protocol": "TCP",
+      "risk_level": "high",
+      "rule_id": "FLOW-001",
+      "score": 85,
+      "scoring_factors": {
+        "base": 75,
+        "confidence": "medium",
+        "confidence_adjustment": 0,
+        "high_volume_bonus": 10,
+        "severity": "high"
+      },
+      "scoring_reason": "Severity high with medium confidence produced score 85.",
+      "severity": "high",
+      "source_ip": "10.0.0.42",
+      "source_path": null,
+      "synthetic": true,
+      "title": "High-volume synthetic outbound flow"
+    },
+    {
+      "category": "http",
+      "confidence": "high",
+      "description": "Detects safe synthetic HTTP user-agent markers in local text samples.",
+      "destination_ip": "203.0.113.23",
+      "destination_port": null,
+      "evidence": "Synthetic HTTP user-agent matched configured marker",
+      "guidance": "Review synthetic HTTP metadata and confirm whether the user-agent marker was expected.",
+      "metadata": {},
+      "protocol": null,
+      "risk_level": "low",
+      "rule_id": "HTTP-001",
+      "score": 25,
+      "scoring_factors": {
+        "base": 20,
+        "confidence": "high",
+        "confidence_adjustment": 5,
+        "severity": "low"
+      },
+      "scoring_reason": "Severity low with high confidence produced score 25.",
+      "severity": "low",
+      "source_ip": "10.0.0.23",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\http_events.txt",
+      "synthetic": true,
+      "title": "Suspicious synthetic HTTP user-agent marker"
+    },
+    {
+      "category": "network-pattern",
+      "confidence": "high",
+      "description": "Detects repeated synthetic connection attempts to the same destination and port.",
+      "destination_ip": "192.0.2.30",
+      "destination_port": 22,
+      "evidence": "2 synthetic attempts from 10.0.0.30 to 192.0.2.30:22",
+      "guidance": "Review firewall or endpoint telemetry for the synthetic source and confirm whether repeated connection attempts are expected.",
+      "metadata": {
+        "event_count": 2
+      },
+      "protocol": "TCP",
+      "risk_level": "medium",
+      "rule_id": "NET-001",
+      "score": 60,
+      "scoring_factors": {
+        "base": 50,
+        "confidence": "high",
+        "confidence_adjustment": 5,
+        "repeated_behavior_bonus": 5,
+        "severity": "medium"
+      },
+      "scoring_reason": "Severity medium with high confidence produced score 60.",
+      "severity": "medium",
+      "source_ip": "10.0.0.30",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\suspicious_connections.json",
+      "synthetic": true,
+      "title": "Repeated connection attempts"
+    },
+    {
+      "category": "network-pattern",
+      "confidence": "medium",
+      "description": "Detects one synthetic source contacting multiple destination ports.",
+      "destination_ip": "192.0.2.30",
+      "destination_port": 22,
+      "evidence": "10.0.0.30 contacted 3 synthetic destination ports",
+      "guidance": "Validate the synthetic source host inventory and confirm whether the observed destination ports are approved.",
+      "metadata": {
+        "destination_ports": [
+          22,
+          8088,
+          8443
+        ]
+      },
+      "protocol": "TCP",
+      "risk_level": "medium",
+      "rule_id": "NET-002",
+      "score": 50,
+      "scoring_factors": {
+        "base": 50,
+        "confidence": "medium",
+        "confidence_adjustment": 0,
+        "severity": "medium"
+      },
+      "scoring_reason": "Severity medium with medium confidence produced score 50.",
+      "severity": "medium",
+      "source_ip": "10.0.0.30",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\suspicious_connections.json",
+      "synthetic": true,
+      "title": "Many destination ports from one source"
+    },
+    {
+      "category": "network-pattern",
+      "confidence": "medium",
+      "description": "Detects destination ports configured as unusual in synthetic lab traffic.",
+      "destination_ip": "192.0.2.30",
+      "destination_port": 8088,
+      "evidence": "Synthetic destination port 8088 matched rule list",
+      "guidance": "Confirm whether the unusual destination port is documented for the synthetic service.",
+      "metadata": {},
+      "protocol": "TCP",
+      "risk_level": "low",
+      "rule_id": "NET-003",
+      "score": 20,
+      "scoring_factors": {
+        "base": 20,
+        "confidence": "medium",
+        "confidence_adjustment": 0,
+        "severity": "low"
+      },
+      "scoring_reason": "Severity low with medium confidence produced score 20.",
+      "severity": "low",
+      "source_ip": "10.0.0.30",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\suspicious_connections.json",
+      "synthetic": true,
+      "title": "Unusual destination port"
+    },
+    {
+      "category": "network-pattern",
+      "confidence": "medium",
+      "description": "Detects destination ports configured as unusual in synthetic lab traffic.",
+      "destination_ip": "198.51.100.40",
+      "destination_port": 8443,
+      "evidence": "Synthetic destination port 8443 matched rule list",
+      "guidance": "Confirm whether the unusual destination port is documented for the synthetic service.",
+      "metadata": {},
+      "protocol": "TCP",
+      "risk_level": "low",
+      "rule_id": "NET-003",
+      "score": 20,
+      "scoring_factors": {
+        "base": 20,
+        "confidence": "medium",
+        "confidence_adjustment": 0,
+        "severity": "low"
+      },
+      "scoring_reason": "Severity low with medium confidence produced score 20.",
+      "severity": "low",
+      "source_ip": "10.0.0.30",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\suspicious_connections.json",
+      "synthetic": true,
+      "title": "Unusual destination port"
+    },
+    {
+      "category": "network-pattern",
+      "confidence": "medium",
+      "description": "Detects destination ports configured as unusual in synthetic lab traffic.",
+      "destination_ip": "192.0.2.42",
+      "destination_port": 9443,
+      "evidence": "Synthetic destination port 9443 matched rule list",
+      "guidance": "Confirm whether the unusual destination port is documented for the synthetic service.",
+      "metadata": {},
+      "protocol": "TCP",
+      "risk_level": "low",
+      "rule_id": "NET-003",
+      "score": 20,
+      "scoring_factors": {
+        "base": 20,
+        "confidence": "medium",
+        "confidence_adjustment": 0,
+        "severity": "low"
+      },
+      "scoring_reason": "Severity low with medium confidence produced score 20.",
+      "severity": "low",
+      "source_ip": "10.0.0.42",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\mixed_packet_events.json",
+      "synthetic": true,
+      "title": "Unusual destination port"
+    },
+    {
+      "category": "network-pattern",
+      "confidence": "medium",
+      "description": "Detects destination ports configured as unusual in synthetic lab traffic.",
+      "destination_ip": "198.51.100.61",
+      "destination_port": 8443,
+      "evidence": "Synthetic destination port 8443 matched rule list",
+      "guidance": "Confirm whether the unusual destination port is documented for the synthetic service.",
+      "metadata": {},
+      "protocol": "TCP",
+      "risk_level": "low",
+      "rule_id": "NET-003",
+      "score": 20,
+      "scoring_factors": {
+        "base": 20,
+        "confidence": "medium",
+        "confidence_adjustment": 0,
+        "severity": "low"
+      },
+      "scoring_reason": "Severity low with medium confidence produced score 20.",
+      "severity": "low",
+      "source_ip": "10.0.0.61",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\sensitive_marker_events.json",
+      "synthetic": true,
+      "title": "Unusual destination port"
+    },
+    {
+      "category": "network-pattern",
+      "confidence": "medium",
+      "description": "Detects destination ports configured as unusual in synthetic lab traffic.",
+      "destination_ip": "203.0.113.62",
+      "destination_port": 9443,
+      "evidence": "Synthetic destination port 9443 matched rule list",
+      "guidance": "Confirm whether the unusual destination port is documented for the synthetic service.",
+      "metadata": {},
+      "protocol": "TCP",
+      "risk_level": "low",
+      "rule_id": "NET-003",
+      "score": 20,
+      "scoring_factors": {
+        "base": 20,
+        "confidence": "medium",
+        "confidence_adjustment": 0,
+        "severity": "low"
+      },
+      "scoring_reason": "Severity low with medium confidence produced score 20.",
+      "severity": "low",
+      "source_ip": "10.0.0.62",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\sensitive_marker_events.json",
+      "synthetic": true,
+      "title": "Unusual destination port"
+    },
+    {
+      "category": "network-pattern",
+      "confidence": "medium",
+      "description": "Detects synthetic protocol and port combinations that are unusual for the sample set.",
+      "destination_ip": "203.0.113.41",
+      "destination_port": 53,
+      "evidence": "Synthetic TCP traffic used destination port 53",
+      "guidance": "Validate whether the protocol and port pairing is expected for the synthetic sample.",
+      "metadata": {},
+      "protocol": "TCP",
+      "risk_level": "medium",
+      "rule_id": "NET-004",
+      "score": 50,
+      "scoring_factors": {
+        "base": 50,
+        "confidence": "medium",
+        "confidence_adjustment": 0,
+        "severity": "medium"
+      },
+      "scoring_reason": "Severity medium with medium confidence produced score 50.",
+      "severity": "medium",
+      "source_ip": "10.0.0.41",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\mixed_packet_events.json",
+      "synthetic": true,
+      "title": "Unexpected protocol and port pairing"
+    },
+    {
+      "category": "network-pattern",
+      "confidence": "high",
+      "description": "Detects repeated synthetic failed status values from the same source.",
+      "destination_ip": "192.0.2.30",
+      "destination_port": 22,
+      "evidence": "10.0.0.30 had 4 synthetic failed status values",
+      "guidance": "Review repeated failed status values and confirm whether they match expected lab activity.",
+      "metadata": {
+        "event_count": 4
+      },
+      "protocol": "TCP",
+      "risk_level": "medium",
+      "rule_id": "NET-005",
+      "score": 65,
+      "scoring_factors": {
+        "base": 50,
+        "confidence": "high",
+        "confidence_adjustment": 5,
+        "repeated_behavior_bonus": 10,
+        "severity": "medium"
+      },
+      "scoring_reason": "Severity medium with high confidence produced score 65.",
+      "severity": "medium",
+      "source_ip": "10.0.0.30",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\suspicious_connections.json",
+      "synthetic": true,
+      "title": "Repeated failed connection marker"
+    },
+    {
+      "category": "network-pattern",
+      "confidence": "high",
+      "description": "Detects private lab sources communicating with reserved documentation destination ranges.",
+      "destination_ip": "192.0.2.10",
+      "destination_port": 80,
+      "evidence": "Private lab source 10.0.0.12 contacted documentation range destination 192.0.2.10",
+      "guidance": "Confirm that documentation-range destinations are expected synthetic lab references.",
+      "metadata": {},
+      "protocol": "TCP",
+      "risk_level": "low",
+      "rule_id": "NET-006",
+      "score": 10,
+      "scoring_factors": {
+        "base": 5,
+        "confidence": "high",
+        "confidence_adjustment": 5,
+        "severity": "informational"
+      },
+      "scoring_reason": "Severity informational with high confidence produced score 10.",
+      "severity": "informational",
+      "source_ip": "10.0.0.12",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\normal_traffic.json",
+      "synthetic": true,
+      "title": "Internal-to-documentation-range destination pattern"
+    },
+    {
+      "category": "network-pattern",
+      "confidence": "high",
+      "description": "Detects private lab sources communicating with reserved documentation destination ranges.",
+      "destination_ip": "203.0.113.21",
+      "destination_port": null,
+      "evidence": "Private lab source 10.0.0.21 contacted documentation range destination 203.0.113.21",
+      "guidance": "Confirm that documentation-range destinations are expected synthetic lab references.",
+      "metadata": {},
+      "protocol": null,
+      "risk_level": "low",
+      "rule_id": "NET-006",
+      "score": 10,
+      "scoring_factors": {
+        "base": 5,
+        "confidence": "high",
+        "confidence_adjustment": 5,
+        "severity": "informational"
+      },
+      "scoring_reason": "Severity informational with high confidence produced score 10.",
+      "severity": "informational",
+      "source_ip": "10.0.0.21",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\http_events.txt",
+      "synthetic": true,
+      "title": "Internal-to-documentation-range destination pattern"
+    },
+    {
+      "category": "network-pattern",
+      "confidence": "high",
+      "description": "Detects private lab sources communicating with reserved documentation destination ranges.",
+      "destination_ip": "203.0.113.22",
+      "destination_port": null,
+      "evidence": "Private lab source 10.0.0.22 contacted documentation range destination 203.0.113.22",
+      "guidance": "Confirm that documentation-range destinations are expected synthetic lab references.",
+      "metadata": {},
+      "protocol": null,
+      "risk_level": "low",
+      "rule_id": "NET-006",
+      "score": 10,
+      "scoring_factors": {
+        "base": 5,
+        "confidence": "high",
+        "confidence_adjustment": 5,
+        "severity": "informational"
+      },
+      "scoring_reason": "Severity informational with high confidence produced score 10.",
+      "severity": "informational",
+      "source_ip": "10.0.0.22",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\http_events.txt",
+      "synthetic": true,
+      "title": "Internal-to-documentation-range destination pattern"
+    },
+    {
+      "category": "network-pattern",
+      "confidence": "high",
+      "description": "Detects private lab sources communicating with reserved documentation destination ranges.",
+      "destination_ip": "203.0.113.23",
+      "destination_port": null,
+      "evidence": "Private lab source 10.0.0.23 contacted documentation range destination 203.0.113.23",
+      "guidance": "Confirm that documentation-range destinations are expected synthetic lab references.",
+      "metadata": {},
+      "protocol": null,
+      "risk_level": "low",
+      "rule_id": "NET-006",
+      "score": 10,
+      "scoring_factors": {
+        "base": 5,
+        "confidence": "high",
+        "confidence_adjustment": 5,
+        "severity": "informational"
+      },
+      "scoring_reason": "Severity informational with high confidence produced score 10.",
+      "severity": "informational",
+      "source_ip": "10.0.0.23",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\http_events.txt",
+      "synthetic": true,
+      "title": "Internal-to-documentation-range destination pattern"
+    },
+    {
+      "category": "network-pattern",
+      "confidence": "high",
+      "description": "Detects private lab sources communicating with reserved documentation destination ranges.",
+      "destination_ip": "203.0.113.24",
+      "destination_port": null,
+      "evidence": "Private lab source 10.0.0.24 contacted documentation range destination 203.0.113.24",
+      "guidance": "Confirm that documentation-range destinations are expected synthetic lab references.",
+      "metadata": {},
+      "protocol": null,
+      "risk_level": "low",
+      "rule_id": "NET-006",
+      "score": 10,
+      "scoring_factors": {
+        "base": 5,
+        "confidence": "high",
+        "confidence_adjustment": 5,
+        "severity": "informational"
+      },
+      "scoring_reason": "Severity informational with high confidence produced score 10.",
+      "severity": "informational",
+      "source_ip": "10.0.0.24",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\http_events.txt",
+      "synthetic": true,
+      "title": "Internal-to-documentation-range destination pattern"
+    },
+    {
+      "category": "network-pattern",
+      "confidence": "high",
+      "description": "Detects private lab sources communicating with reserved documentation destination ranges.",
+      "destination_ip": "192.0.2.30",
+      "destination_port": 22,
+      "evidence": "Private lab source 10.0.0.30 contacted documentation range destination 192.0.2.30",
+      "guidance": "Confirm that documentation-range destinations are expected synthetic lab references.",
+      "metadata": {},
+      "protocol": "TCP",
+      "risk_level": "low",
+      "rule_id": "NET-006",
+      "score": 10,
+      "scoring_factors": {
+        "base": 5,
+        "confidence": "high",
+        "confidence_adjustment": 5,
+        "severity": "informational"
+      },
+      "scoring_reason": "Severity informational with high confidence produced score 10.",
+      "severity": "informational",
+      "source_ip": "10.0.0.30",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\suspicious_connections.json",
+      "synthetic": true,
+      "title": "Internal-to-documentation-range destination pattern"
+    },
+    {
+      "category": "network-pattern",
+      "confidence": "high",
+      "description": "Detects private lab sources communicating with reserved documentation destination ranges.",
+      "destination_ip": "192.0.2.30",
+      "destination_port": 22,
+      "evidence": "Private lab source 10.0.0.30 contacted documentation range destination 192.0.2.30",
+      "guidance": "Confirm that documentation-range destinations are expected synthetic lab references.",
+      "metadata": {},
+      "protocol": "TCP",
+      "risk_level": "low",
+      "rule_id": "NET-006",
+      "score": 10,
+      "scoring_factors": {
+        "base": 5,
+        "confidence": "high",
+        "confidence_adjustment": 5,
+        "severity": "informational"
+      },
+      "scoring_reason": "Severity informational with high confidence produced score 10.",
+      "severity": "informational",
+      "source_ip": "10.0.0.30",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\suspicious_connections.json",
+      "synthetic": true,
+      "title": "Internal-to-documentation-range destination pattern"
+    },
+    {
+      "category": "network-pattern",
+      "confidence": "high",
+      "description": "Detects private lab sources communicating with reserved documentation destination ranges.",
+      "destination_ip": "192.0.2.30",
+      "destination_port": 8088,
+      "evidence": "Private lab source 10.0.0.30 contacted documentation range destination 192.0.2.30",
+      "guidance": "Confirm that documentation-range destinations are expected synthetic lab references.",
+      "metadata": {},
+      "protocol": "TCP",
+      "risk_level": "low",
+      "rule_id": "NET-006",
+      "score": 10,
+      "scoring_factors": {
+        "base": 5,
+        "confidence": "high",
+        "confidence_adjustment": 5,
+        "severity": "informational"
+      },
+      "scoring_reason": "Severity informational with high confidence produced score 10.",
+      "severity": "informational",
+      "source_ip": "10.0.0.30",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\suspicious_connections.json",
+      "synthetic": true,
+      "title": "Internal-to-documentation-range destination pattern"
+    },
+    {
+      "category": "network-pattern",
+      "confidence": "high",
+      "description": "Detects private lab sources communicating with reserved documentation destination ranges.",
+      "destination_ip": "198.51.100.40",
+      "destination_port": 8443,
+      "evidence": "Private lab source 10.0.0.30 contacted documentation range destination 198.51.100.40",
+      "guidance": "Confirm that documentation-range destinations are expected synthetic lab references.",
+      "metadata": {},
+      "protocol": "TCP",
+      "risk_level": "low",
+      "rule_id": "NET-006",
+      "score": 10,
+      "scoring_factors": {
+        "base": 5,
+        "confidence": "high",
+        "confidence_adjustment": 5,
+        "severity": "informational"
+      },
+      "scoring_reason": "Severity informational with high confidence produced score 10.",
+      "severity": "informational",
+      "source_ip": "10.0.0.30",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\suspicious_connections.json",
+      "synthetic": true,
+      "title": "Internal-to-documentation-range destination pattern"
+    },
+    {
+      "category": "network-pattern",
+      "confidence": "high",
+      "description": "Detects private lab sources communicating with reserved documentation destination ranges.",
+      "destination_ip": "198.51.100.10",
+      "destination_port": 443,
+      "evidence": "Private lab source 10.0.0.40 contacted documentation range destination 198.51.100.10",
+      "guidance": "Confirm that documentation-range destinations are expected synthetic lab references.",
+      "metadata": {},
+      "protocol": "TCP",
+      "risk_level": "low",
+      "rule_id": "NET-006",
+      "score": 10,
+      "scoring_factors": {
+        "base": 5,
+        "confidence": "high",
+        "confidence_adjustment": 5,
+        "severity": "informational"
+      },
+      "scoring_reason": "Severity informational with high confidence produced score 10.",
+      "severity": "informational",
+      "source_ip": "10.0.0.40",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\mixed_packet_events.json",
+      "synthetic": true,
+      "title": "Internal-to-documentation-range destination pattern"
+    },
+    {
+      "category": "network-pattern",
+      "confidence": "high",
+      "description": "Detects private lab sources communicating with reserved documentation destination ranges.",
+      "destination_ip": "203.0.113.41",
+      "destination_port": 53,
+      "evidence": "Private lab source 10.0.0.41 contacted documentation range destination 203.0.113.41",
+      "guidance": "Confirm that documentation-range destinations are expected synthetic lab references.",
+      "metadata": {},
+      "protocol": "TCP",
+      "risk_level": "low",
+      "rule_id": "NET-006",
+      "score": 10,
+      "scoring_factors": {
+        "base": 5,
+        "confidence": "high",
+        "confidence_adjustment": 5,
+        "severity": "informational"
+      },
+      "scoring_reason": "Severity informational with high confidence produced score 10.",
+      "severity": "informational",
+      "source_ip": "10.0.0.41",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\mixed_packet_events.json",
+      "synthetic": true,
+      "title": "Internal-to-documentation-range destination pattern"
+    },
+    {
+      "category": "network-pattern",
+      "confidence": "high",
+      "description": "Detects private lab sources communicating with reserved documentation destination ranges.",
+      "destination_ip": "192.0.2.42",
+      "destination_port": 9443,
+      "evidence": "Private lab source 10.0.0.42 contacted documentation range destination 192.0.2.42",
+      "guidance": "Confirm that documentation-range destinations are expected synthetic lab references.",
+      "metadata": {},
+      "protocol": "TCP",
+      "risk_level": "low",
+      "rule_id": "NET-006",
+      "score": 10,
+      "scoring_factors": {
+        "base": 5,
+        "confidence": "high",
+        "confidence_adjustment": 5,
+        "severity": "informational"
+      },
+      "scoring_reason": "Severity informational with high confidence produced score 10.",
+      "severity": "informational",
+      "source_ip": "10.0.0.42",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\mixed_packet_events.json",
+      "synthetic": true,
+      "title": "Internal-to-documentation-range destination pattern"
+    },
+    {
+      "category": "network-pattern",
+      "confidence": "high",
+      "description": "Detects private lab sources communicating with reserved documentation destination ranges.",
+      "destination_ip": "192.0.2.60",
+      "destination_port": 443,
+      "evidence": "Private lab source 10.0.0.60 contacted documentation range destination 192.0.2.60",
+      "guidance": "Confirm that documentation-range destinations are expected synthetic lab references.",
+      "metadata": {},
+      "protocol": "TCP",
+      "risk_level": "low",
+      "rule_id": "NET-006",
+      "score": 10,
+      "scoring_factors": {
+        "base": 5,
+        "confidence": "high",
+        "confidence_adjustment": 5,
+        "severity": "informational"
+      },
+      "scoring_reason": "Severity informational with high confidence produced score 10.",
+      "severity": "informational",
+      "source_ip": "10.0.0.60",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\sensitive_marker_events.json",
+      "synthetic": true,
+      "title": "Internal-to-documentation-range destination pattern"
+    },
+    {
+      "category": "network-pattern",
+      "confidence": "high",
+      "description": "Detects private lab sources communicating with reserved documentation destination ranges.",
+      "destination_ip": "198.51.100.61",
+      "destination_port": 8443,
+      "evidence": "Private lab source 10.0.0.61 contacted documentation range destination 198.51.100.61",
+      "guidance": "Confirm that documentation-range destinations are expected synthetic lab references.",
+      "metadata": {},
+      "protocol": "TCP",
+      "risk_level": "low",
+      "rule_id": "NET-006",
+      "score": 10,
+      "scoring_factors": {
+        "base": 5,
+        "confidence": "high",
+        "confidence_adjustment": 5,
+        "severity": "informational"
+      },
+      "scoring_reason": "Severity informational with high confidence produced score 10.",
+      "severity": "informational",
+      "source_ip": "10.0.0.61",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\sensitive_marker_events.json",
+      "synthetic": true,
+      "title": "Internal-to-documentation-range destination pattern"
+    },
+    {
+      "category": "network-pattern",
+      "confidence": "high",
+      "description": "Detects private lab sources communicating with reserved documentation destination ranges.",
+      "destination_ip": "203.0.113.62",
+      "destination_port": 9443,
+      "evidence": "Private lab source 10.0.0.62 contacted documentation range destination 203.0.113.62",
+      "guidance": "Confirm that documentation-range destinations are expected synthetic lab references.",
+      "metadata": {},
+      "protocol": "TCP",
+      "risk_level": "low",
+      "rule_id": "NET-006",
+      "score": 10,
+      "scoring_factors": {
+        "base": 5,
+        "confidence": "high",
+        "confidence_adjustment": 5,
+        "severity": "informational"
+      },
+      "scoring_reason": "Severity informational with high confidence produced score 10.",
+      "severity": "informational",
+      "source_ip": "10.0.0.62",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\sensitive_marker_events.json",
+      "synthetic": true,
+      "title": "Internal-to-documentation-range destination pattern"
+    },
+    {
+      "category": "synthetic-redaction",
+      "confidence": "high",
+      "description": "Detects approved synthetic sensitive markers and emits redacted evidence only.",
+      "destination_ip": "192.0.2.60",
+      "destination_port": 443,
+      "evidence": "Approved synthetic sensitive marker observed as [REDACTED]",
+      "guidance": "Confirm whether the redacted synthetic marker was intentionally placed, then remove exposed test data from synthetic samples if it is not needed.",
+      "metadata": {
+        "marker_count": 1
+      },
+      "protocol": "TCP",
+      "risk_level": "high",
+      "rule_id": "SENS-001",
+      "score": 70,
+      "scoring_factors": {
+        "base": 50,
+        "confidence": "high",
+        "confidence_adjustment": 5,
+        "sensitive_marker_bonus": 15,
+        "severity": "medium"
+      },
+      "scoring_reason": "Severity medium with high confidence produced score 70.",
+      "severity": "medium",
+      "source_ip": "10.0.0.60",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\sensitive_marker_events.json",
+      "synthetic": true,
+      "title": "Synthetic sensitive marker detected"
+    },
+    {
+      "category": "synthetic-redaction",
+      "confidence": "high",
+      "description": "Detects approved synthetic sensitive markers and emits redacted evidence only.",
+      "destination_ip": "198.51.100.61",
+      "destination_port": 8443,
+      "evidence": "Approved synthetic sensitive marker observed as [REDACTED]",
+      "guidance": "Confirm whether the redacted synthetic marker was intentionally placed, then remove exposed test data from synthetic samples if it is not needed.",
+      "metadata": {
+        "marker_count": 1
+      },
+      "protocol": "TCP",
+      "risk_level": "high",
+      "rule_id": "SENS-001",
+      "score": 70,
+      "scoring_factors": {
+        "base": 50,
+        "confidence": "high",
+        "confidence_adjustment": 5,
+        "sensitive_marker_bonus": 15,
+        "severity": "medium"
+      },
+      "scoring_reason": "Severity medium with high confidence produced score 70.",
+      "severity": "medium",
+      "source_ip": "10.0.0.61",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\sensitive_marker_events.json",
+      "synthetic": true,
+      "title": "Synthetic sensitive marker detected"
+    },
+    {
+      "category": "synthetic-redaction",
+      "confidence": "high",
+      "description": "Detects approved synthetic sensitive markers and emits redacted evidence only.",
+      "destination_ip": "203.0.113.62",
+      "destination_port": 9443,
+      "evidence": "Approved synthetic sensitive marker observed as [REDACTED]",
+      "guidance": "Confirm whether the redacted synthetic marker was intentionally placed, then remove exposed test data from synthetic samples if it is not needed.",
+      "metadata": {
+        "marker_count": 1
+      },
+      "protocol": "TCP",
+      "risk_level": "high",
+      "rule_id": "SENS-001",
+      "score": 70,
+      "scoring_factors": {
+        "base": 50,
+        "confidence": "high",
+        "confidence_adjustment": 5,
+        "sensitive_marker_bonus": 15,
+        "severity": "medium"
+      },
+      "scoring_reason": "Severity medium with high confidence produced score 70.",
+      "severity": "medium",
+      "source_ip": "10.0.0.62",
+      "source_path": "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\sensitive_marker_events.json",
+      "synthetic": true,
+      "title": "Synthetic sensitive marker detected"
+    }
+  ],
+  "detection_summary": {
+    "alert_count": 33,
+    "alerts_by_risk_level": {
+      "high": 4,
+      "low": 25,
+      "medium": 4
+    },
+    "alerts_by_severity": {
+      "high": 1,
+      "informational": 15,
+      "low": 10,
+      "medium": 7
+    },
+    "average_score": 27.12,
+    "highest_risk": "high",
+    "max_score": 85,
+    "min_severity": null,
+    "rules_loaded": 10
+  },
+  "events_loaded": 24,
+  "files_loaded": [
+    "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\dns_queries.csv",
+    "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\http_events.txt",
+    "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\malformed_records.json",
+    "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\mixed_packet_events.json",
+    "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\normal_traffic.json",
+    "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\sensitive_marker_events.json",
+    "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\logs\\suspicious_connections.json"
+  ],
+  "flow_summary": {
+    "top_flows": [
+      {
+        "event_count": 1,
+        "first_seen": "2026-06-05T12:01:00Z",
+        "hostnames": [
+          "bulk-transfer.test"
+        ],
+        "key": {
+          "destination_ip": "192.0.2.42",
+          "destination_port": 9443,
+          "protocol": "TCP",
+          "source_ip": "10.0.0.42",
+          "source_port": 53000
+        },
+        "last_seen": "2026-06-05T12:01:00Z",
+        "malformed_count": 0,
+        "query_names": [],
+        "statuses": [
+          "allowed"
+        ],
+        "total_bytes": 250000,
+        "user_agents": []
+      },
+      {
+        "event_count": 1,
+        "first_seen": "2026-06-05T12:00:00Z",
+        "hostnames": [
+          "example.net"
+        ],
+        "key": {
+          "destination_ip": "198.51.100.10",
+          "destination_port": 443,
+          "protocol": "TCP",
+          "source_ip": "10.0.0.40",
+          "source_port": 51000
+        },
+        "last_seen": "2026-06-05T12:00:00Z",
+        "malformed_count": 0,
+        "query_names": [],
+        "statuses": [
+          "allowed"
+        ],
+        "total_bytes": 4096,
+        "user_agents": []
+      },
+      {
+        "event_count": 1,
+        "first_seen": "2026-06-05T08:00:00Z",
+        "hostnames": [
+          "lab-server"
+        ],
+        "key": {
+          "destination_ip": "10.0.0.20",
+          "destination_port": 443,
+          "protocol": "TCP",
+          "source_ip": "10.0.0.10",
+          "source_port": 49152
+        },
+        "last_seen": "2026-06-05T08:00:00Z",
+        "malformed_count": 0,
+        "query_names": [],
+        "statuses": [
+          "allowed"
+        ],
+        "total_bytes": 1840,
+        "user_agents": []
+      },
+      {
+        "event_count": 1,
+        "first_seen": "2026-06-05T08:02:00Z",
+        "hostnames": [
+          "example.org"
+        ],
+        "key": {
+          "destination_ip": "192.0.2.10",
+          "destination_port": 80,
+          "protocol": "TCP",
+          "source_ip": "10.0.0.12",
+          "source_port": 49153
+        },
+        "last_seen": "2026-06-05T08:02:00Z",
+        "malformed_count": 0,
+        "query_names": [],
+        "statuses": [
+          "allowed"
+        ],
+        "total_bytes": 720,
+        "user_agents": []
+      },
+      {
+        "event_count": 1,
+        "first_seen": "2026-06-05T14:00:00Z",
+        "hostnames": [
+          "example.com"
+        ],
+        "key": {
+          "destination_ip": "192.0.2.60",
+          "destination_port": 443,
+          "protocol": "TCP",
+          "source_ip": "10.0.0.60",
+          "source_port": 54000
+        },
+        "last_seen": "2026-06-05T14:00:00Z",
+        "malformed_count": 0,
+        "query_names": [],
+        "statuses": [
+          "synthetic_sensitive_marker_present"
+        ],
+        "total_bytes": 512,
+        "user_agents": []
+      }
+    ],
+    "top_talkers": [
+      {
+        "destination_ip": "192.0.2.42",
+        "event_count": 1,
+        "source_ip": "10.0.0.42",
+        "total_bytes": 250000
+      },
+      {
+        "destination_ip": "198.51.100.10",
+        "event_count": 1,
+        "source_ip": "10.0.0.40",
+        "total_bytes": 4096
+      },
+      {
+        "destination_ip": "10.0.0.20",
+        "event_count": 1,
+        "source_ip": "10.0.0.10",
+        "total_bytes": 1840
+      },
+      {
+        "destination_ip": "192.0.2.10",
+        "event_count": 1,
+        "source_ip": "10.0.0.12",
+        "total_bytes": 720
+      },
+      {
+        "destination_ip": "192.0.2.60",
+        "event_count": 1,
+        "source_ip": "10.0.0.60",
+        "total_bytes": 512
+      }
+    ],
+    "total_flows": 17
+  },
+  "generated_at": "2026-06-06T10:00:01+00:00",
+  "input_path": "samples",
+  "limitations": [
+    "This report analyzes local synthetic samples only.",
+    "This report is not based on live sniffing or packet capture.",
+    "This report does not analyze real traffic.",
+    "This report does not perform credential extraction.",
+    "Risk scores are deterministic lab scoring values, not production risk ratings."
+  ],
+  "malformed_records": 3,
+  "protocol_summary": {
+    "destination_port_counts": {
+      "22": 2,
+      "443": 3,
+      "53": 2,
+      "80": 1,
+      "8088": 1,
+      "8443": 2,
+      "9443": 2
+    },
+    "protocol_counts": {
+      "TCP": 12,
+      "UDP": 1,
+      "UNKNOWN": 8
+    },
+    "top_destinations": [
+      {
+        "count": 3,
+        "value": "192.0.2.30"
+      },
+      {
+        "count": 1,
+        "value": "10.0.0.20"
+      },
+      {
+        "count": 1,
+        "value": "10.0.0.53"
+      },
+      {
+        "count": 1,
+        "value": "192.0.2.10"
+      },
+      {
+        "count": 1,
+        "value": "192.0.2.42"
+      }
+    ],
+    "top_sources": [
+      {
+        "count": 4,
+        "value": "10.0.0.30"
+      },
+      {
+        "count": 2,
+        "value": "10.0.0.15"
+      },
+      {
+        "count": 1,
+        "value": "10.0.0.10"
+      },
+      {
+        "count": 1,
+        "value": "10.0.0.11"
+      },
+      {
+        "count": 1,
+        "value": "10.0.0.12"
+      }
+    ]
+  },
+  "records_seen": 24,
+  "redaction_summary": {
+    "raw_sensitive_markers_present": false,
+    "redaction_count": 3,
+    "redaction_token": "[REDACTED]"
+  },
+  "safety_scope": {
+    "credential_handling": "not_performed",
+    "live_sniffing": false,
+    "offline_only": true,
+    "packet_capture": false,
+    "real_traffic": false,
+    "synthetic_data_only": true
+  },
+  "schema_version": "1.0",
+  "skipped_files": [
+    "D:\\NetworkAnalyzerLab\\offline-network-packet-analyzer-lab\\samples\\raw\\README.md"
+  ],
+  "tool_name": "offline-network-packet-analyzer-lab"
+}

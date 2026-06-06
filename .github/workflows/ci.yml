@@ -1,0 +1,100 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+
+      - name: Ruff check
+        run: python -m ruff check .
+
+      - name: Ruff format check
+        run: python -m ruff format --check .
+
+      - name: Pytest with coverage
+        run: >
+          python -m pytest
+          --cov=offline_packet_analyzer
+          --cov-report=term-missing
+          --cov-report=xml
+          --cov-fail-under=90
+
+      - name: Upload coverage artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-xml
+          path: coverage.xml
+          if-no-files-found: ignore
+
+  docs-safety-checks:
+    name: Docs Safety Checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+
+      - name: Run docs safety checks
+        run: python scripts/check-docs.py
+
+  cli-smoke:
+    name: CLI Smoke
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+
+      - name: Run safe offline CLI commands
+        run: |
+          python -m offline_packet_analyzer --help
+          python -m offline_packet_analyzer inventory --input samples --format json
+          python -m offline_packet_analyzer validate-samples --input samples
+          python -m offline_packet_analyzer summarize --input samples --format json
+          python -m offline_packet_analyzer summarize --input samples --format text
+          python -m offline_packet_analyzer detect --input samples --format json
+          python -m offline_packet_analyzer detect --input samples --format text --min-severity medium
+          python -m offline_packet_analyzer report --input samples --output reports/examples/ci_offline_packet_analysis_report.json --format json
+          python -m offline_packet_analyzer report --input samples --output reports/examples/ci_offline_packet_analysis_report.md --format markdown

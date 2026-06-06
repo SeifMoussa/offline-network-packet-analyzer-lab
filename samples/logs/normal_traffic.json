@@ -1,0 +1,41 @@
+[
+  {
+    "timestamp": "2026-06-05T08:00:00Z",
+    "source_ip": "10.0.0.10",
+    "destination_ip": "10.0.0.20",
+    "source_port": 49152,
+    "destination_port": 443,
+    "protocol": "TCP",
+    "byte_count": 1840,
+    "status": "allowed",
+    "hostname": "lab-server",
+    "synthetic_marker": true,
+    "scenario": "baseline_internal_https"
+  },
+  {
+    "timestamp": "2026-06-05T08:01:00Z",
+    "source_ip": "10.0.0.11",
+    "destination_ip": "10.0.0.53",
+    "source_port": 53001,
+    "destination_port": 53,
+    "protocol": "UDP",
+    "byte_count": 96,
+    "status": "allowed",
+    "query_name": "example.com",
+    "synthetic_marker": true,
+    "scenario": "baseline_dns_lookup"
+  },
+  {
+    "timestamp": "2026-06-05T08:02:00Z",
+    "source_ip": "10.0.0.12",
+    "destination_ip": "192.0.2.10",
+    "source_port": 49153,
+    "destination_port": 80,
+    "protocol": "TCP",
+    "byte_count": 720,
+    "status": "allowed",
+    "hostname": "example.org",
+    "synthetic_marker": true,
+    "scenario": "documentation_range_web_reference"
+  }
+]

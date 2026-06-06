@@ -1,0 +1,41 @@
+[
+  {
+    "timestamp": "2026-06-05T12:00:00Z",
+    "source_ip": "10.0.0.40",
+    "destination_ip": "198.51.100.10",
+    "source_port": 51000,
+    "destination_port": 443,
+    "protocol": "TCP",
+    "byte_count": 4096,
+    "status": "allowed",
+    "hostname": "example.net",
+    "synthetic_marker": true,
+    "scenario": "normal_outbound_reference"
+  },
+  {
+    "timestamp": "2026-06-05T12:00:30Z",
+    "source_ip": "10.0.0.41",
+    "destination_ip": "203.0.113.41",
+    "source_port": 52000,
+    "destination_port": 53,
+    "protocol": "TCP",
+    "byte_count": 320,
+    "status": "allowed",
+    "query_name": "resolver-check.test",
+    "synthetic_marker": true,
+    "scenario": "protocol_port_mismatch"
+  },
+  {
+    "timestamp": "2026-06-05T12:01:00Z",
+    "source_ip": "10.0.0.42",
+    "destination_ip": "192.0.2.42",
+    "source_port": 53000,
+    "destination_port": 9443,
+    "protocol": "TCP",
+    "byte_count": 250000,
+    "status": "allowed",
+    "hostname": "bulk-transfer.test",
+    "synthetic_marker": true,
+    "scenario": "high_volume_flow"
+  }
+]

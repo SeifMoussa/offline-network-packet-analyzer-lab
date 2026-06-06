@@ -1,0 +1,5 @@
+timestamp,source_ip,query_name,response_code,synthetic_marker
+2026-06-05T10:00:00Z,10.0.0.15,example.com,NOERROR,true
+2026-06-05T10:00:10Z,10.0.0.15,updates.example.net,NOERROR,true
+2026-06-05T10:00:20Z,10.0.0.16,suspicious-lab.test,NXDOMAIN,true
+2026-06-05T10:00:30Z,10.0.0.17,beacon-check.test,NOERROR,true

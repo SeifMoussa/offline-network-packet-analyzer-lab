@@ -1,0 +1,41 @@
+[
+  {
+    "timestamp": "2026-06-05T14:00:00Z",
+    "source_ip": "10.0.0.60",
+    "destination_ip": "192.0.2.60",
+    "source_port": 54000,
+    "destination_port": 443,
+    "protocol": "TCP",
+    "byte_count": 512,
+    "status": "synthetic_sensitive_marker_present",
+    "hostname": "example.com",
+    "synthetic_marker": true,
+    "notes": "SYNTHETIC_PASSWORD_MARKER"
+  },
+  {
+    "timestamp": "2026-06-05T14:01:00Z",
+    "source_ip": "10.0.0.61",
+    "destination_ip": "198.51.100.61",
+    "source_port": 54001,
+    "destination_port": 8443,
+    "protocol": "TCP",
+    "byte_count": 512,
+    "status": "synthetic_sensitive_marker_present",
+    "hostname": "marker-check.test",
+    "synthetic_marker": true,
+    "notes": "SYNTHETIC_TOKEN_MARKER"
+  },
+  {
+    "timestamp": "2026-06-05T14:02:00Z",
+    "source_ip": "10.0.0.62",
+    "destination_ip": "203.0.113.62",
+    "source_port": 54002,
+    "destination_port": 9443,
+    "protocol": "TCP",
+    "byte_count": 512,
+    "status": "synthetic_sensitive_marker_present",
+    "hostname": "secret-check.test",
+    "synthetic_marker": true,
+    "notes": "SYNTHETIC_SECRET_MARKER"
+  }
+]

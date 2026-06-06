@@ -1,0 +1,129 @@
+# Safe synthetic detection rules for offline local samples.
+# These are not real threat intelligence indicators.
+rules:
+  - rule_id: NET-001
+    title: Repeated connection attempts
+    description: Detects repeated synthetic connection attempts to the same destination and port.
+    severity: medium
+    confidence: high
+    category: network-pattern
+    enabled: true
+    detector_type: repeated_connections
+    threshold: 2
+    status_keywords:
+      - failed
+    guidance: Review whether the synthetic source is expected to contact that destination and port.
+
+  - rule_id: NET-002
+    title: Many destination ports from one source
+    description: Detects one synthetic source contacting multiple destination ports.
+    severity: medium
+    confidence: medium
+    category: network-pattern
+    enabled: true
+    detector_type: many_destination_ports
+    threshold: 3
+    guidance: Confirm whether the synthetic source has an approved reason to touch many ports.
+
+  - rule_id: DNS-001
+    title: DNS query to suspicious .test domain
+    description: Detects DNS-like queries to synthetic suspicious .test domains.
+    severity: low
+    confidence: high
+    category: dns
+    enabled: true
+    detector_type: suspicious_test_domain
+    patterns:
+      - suspicious-lab.test
+      - beacon-check.test
+      - resolver-check.test
+    guidance: Review synthetic DNS activity and confirm the query is expected in the lab scenario.
+
+  - rule_id: FLOW-001
+    title: High-volume synthetic outbound flow
+    description: Detects synthetic flows with byte totals above a configured threshold.
+    severity: high
+    confidence: medium
+    category: flow
+    enabled: true
+    detector_type: high_volume_flow
+    threshold: 100000
+    guidance: Review whether the synthetic byte volume is expected for the lab scenario.
+
+  - rule_id: NET-003
+    title: Unusual destination port
+    description: Detects destination ports configured as unusual in synthetic lab traffic.
+    severity: low
+    confidence: medium
+    category: network-pattern
+    enabled: true
+    detector_type: unusual_destination_port
+    ports:
+      - 8088
+      - 8443
+      - 9443
+    guidance: Check whether the destination port is documented and approved for the synthetic host.
+
+  - rule_id: NET-004
+    title: Unexpected protocol and port pairing
+    description: Detects synthetic protocol and port combinations that are unusual for the sample set.
+    severity: medium
+    confidence: medium
+    category: network-pattern
+    enabled: true
+    detector_type: protocol_port_mismatch
+    mismatches:
+      - protocol: TCP
+        destination_port: 53
+      - protocol: UDP
+        destination_port: 80
+    guidance: Validate whether the protocol and port pairing is intentional for the synthetic scenario.
+
+  - rule_id: NET-005
+    title: Repeated failed connection marker
+    description: Detects repeated synthetic failed status values from the same source.
+    severity: medium
+    confidence: high
+    category: network-pattern
+    enabled: true
+    detector_type: repeated_failure_marker
+    threshold: 3
+    status_keywords:
+      - failed
+    guidance: Review failed connection trends for the synthetic source and compare with expected behavior.
+
+  - rule_id: HTTP-001
+    title: Suspicious synthetic HTTP user-agent marker
+    description: Detects safe synthetic HTTP user-agent markers in local text samples.
+    severity: low
+    confidence: high
+    category: http
+    enabled: true
+    detector_type: suspicious_user_agent
+    patterns:
+      - SyntheticSuspiciousAgent/1.0
+    guidance: Confirm whether the synthetic user-agent is expected in the lab scenario.
+
+  - rule_id: NET-006
+    title: Internal-to-documentation-range destination pattern
+    description: Detects private lab sources communicating with reserved documentation destination ranges.
+    severity: informational
+    confidence: high
+    category: network-pattern
+    enabled: true
+    detector_type: documentation_range_destination
+    destination_ranges:
+      - 192.0.2.0/24
+      - 198.51.100.0/24
+      - 203.0.113.0/24
+    guidance: Treat as a synthetic lab reference and verify the destination range is expected.
+
+  - rule_id: SENS-001
+    title: Synthetic sensitive marker detected
+    description: Detects approved synthetic sensitive markers and emits redacted evidence only.
+    severity: medium
+    confidence: high
+    category: synthetic-redaction
+    enabled: true
+    detector_type: synthetic_sensitive_marker
+    guidance: Confirm whether the redacted synthetic marker was intentionally placed in the sample.

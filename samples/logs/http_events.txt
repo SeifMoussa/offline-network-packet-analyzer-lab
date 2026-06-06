@@ -1,0 +1,4 @@
+2026-06-05T11:00:00Z 10.0.0.21 203.0.113.21 GET example.com /index.html LabBrowser/1.0 200
+2026-06-05T11:01:00Z 10.0.0.22 203.0.113.22 POST example.org /submit LabClient/1.0 202
+2026-06-05T11:02:00Z 10.0.0.23 203.0.113.23 GET suspicious-lab.test /check SyntheticSuspiciousAgent/1.0 404
+2026-06-05T11:03:00Z 10.0.0.24 203.0.113.24 GET example.net /status AnalystWorkstation/1.0 200
