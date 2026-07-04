@@ -17,6 +17,10 @@ It is not a production IDS or NDR replacement.
 CI/CodeQL configured but not yet GitHub-verified. The repository has not been
 published, and no tags or releases have been created.
 
+## Why This Lab Is Different From My Other Security Labs
+
+This lab starts with network conversations rather than cloud configuration, endpoint state, file signatures, or an existing alert queue. The cloud/IaC lab reviews configuration before deployment, the host lab compares files and host events, the YARA/log lab matches content rules, and the alert-triage lab organizes findings produced elsewhere. Here, local synthetic events are turned into flow/session summaries, protocol counts, YAML-backed detections, scores, redacted evidence, and reports. The byte-level parser tests also make Ethernet, IPv4, TCP, and UDP header boundaries explicit without adding a live capture path.
+
 ## Target Roles
 
 This project is designed to be reviewable for:
@@ -289,13 +293,35 @@ tests/                   Unit, CLI, safety, workflow, documentation tests
 
 ## Known Limitations
 
-- Uses synthetic local samples only
-- Does not process real packet captures
-- Does not inspect live interfaces
-- Does not decode application payloads from real traffic
-- Does not perform credential extraction
-- Does not replace an IDS, NDR, SIEM, or packet-capture platform
-- CI/CodeQL have not run on GitHub yet
+- All traffic records and byte fixtures are synthetic and local; no production packet data belongs in this repository.
+- There is no live network tap, interface inspection, use of raw sockets, or PCAP ingestion.
+- The parsers expose Ethernet, IPv4, TCP, and UDP metadata only. They do not reassemble streams, decode encrypted traffic, or inspect application payloads from real traffic.
+- The YAML rules are a small transparent lab set, not production NIDS/NDR coverage or threat intelligence.
+- There is no enterprise SIEM integration, sensor fleet management, distributed storage, or continuous monitoring.
+- CI/CodeQL have not run on GitHub yet.
+
+## What I Would Improve Next
+
+I would add an offline PCAP adapter behind the existing event model, with strict size limits and fixtures created specifically for the lab. TCP stream reassembly and IPv6 metadata would come before deeper protocol decoders because both affect flow correctness. I would also version the detection-rule schema and add an optional JSON export adapter for SIEM ingestion while keeping collection and network access outside the analyzer.
+
+## How to Verify It Works
+
+Install the development extras, run the repository quality gates, then exercise sample validation, flow summaries, detections, and redacted report generation:
+
+```bash
+python -m pip install -e ".[dev]"
+python -m ruff check .
+python -m ruff format --check .
+python -m pytest
+python -m pytest --cov=offline_packet_analyzer --cov-report=term-missing --cov-fail-under=90
+python scripts/check-docs.py
+python -m offline_packet_analyzer validate-samples --input samples
+python -m offline_packet_analyzer summarize --input samples --format text
+python -m offline_packet_analyzer detect --input samples --format text
+python -m offline_packet_analyzer report --input samples --output reports/examples/offline_packet_analysis_report.json --format json
+```
+
+These commands verify the offline synthetic workflow. They do not validate live packet capture, encrypted traffic inspection, or production NIDS deployment.
 
 ## License
 
