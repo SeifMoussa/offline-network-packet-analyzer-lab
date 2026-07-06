@@ -1,6 +1,6 @@
 # Raw Byte Fixture Policy
 
-Phase 2 does not add binary packet captures, PCAP files, or packet bytes copied from real traffic.
+The repository does not include binary packet captures, PCAP files, or packet bytes copied from real traffic.
 
 Future raw byte fixtures must be handcrafted in tests only and must remain synthetic. They may be used to exercise:
 

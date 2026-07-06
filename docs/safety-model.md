@@ -38,11 +38,11 @@ Synthetic sensitive-marker examples are allowed only for redaction testing:
 - `SYNTHETIC_TOKEN_MARKER`
 - `SYNTHETIC_SECRET_MARKER`
 
-Phase 7 redaction ensures these markers are reported only as `[REDACTED]` in console output and JSON-ready output structures.
+Redaction ensures these markers are reported only as `[REDACTED]` in console output and JSON-ready output structures.
 
 ## Offline Loader Safety
 
-Phase 3 loaders operate only on explicit local file or directory paths.
+Loaders operate only on explicit local file or directory paths.
 
 Loader safety controls:
 
@@ -60,7 +60,7 @@ The loader code does not inspect network interfaces, open raw sockets, require e
 
 ## Parser Safety Boundaries
 
-Phase 4 parser functions operate only on `bytes` supplied by the caller.
+Parser functions operate only on `bytes` supplied by the caller.
 
 Parser safety controls:
 
@@ -77,7 +77,7 @@ The parser modules extract metadata from synthetic bytes only. They do not dump 
 
 ## Offline Flow Analysis Boundaries
 
-Phase 5 flow summaries operate only on `PacketEvent` objects produced by the local synthetic loaders.
+Flow summaries operate only on `PacketEvent` objects produced by the local synthetic loaders.
 
 Flow summary controls:
 
@@ -93,7 +93,7 @@ Malformed or incomplete records are counted safely and skipped from flow aggrega
 
 ## Detection Safety Boundaries
 
-Phase 6 detections run only on local synthetic `PacketEvent` objects and synthetic flow summaries.
+Detections run only on local synthetic `PacketEvent` objects and synthetic flow summaries.
 
 Detection safety controls:
 
@@ -113,7 +113,7 @@ Malformed records are skipped safely during detection.
 
 ## Redaction Boundaries
 
-Phase 7 recognizes only approved synthetic marker constants. It does not parse real passwords, tokens, API keys, or secrets.
+The redaction workflow recognizes only approved synthetic marker constants. It does not parse real passwords, tokens, API keys, or secrets.
 
 Redaction controls:
 
@@ -124,7 +124,7 @@ Redaction controls:
 
 ## Reporting Guarantees
 
-Phase 8 report generation writes only the explicit output file requested by the user.
+Report generation writes only the explicit output file requested by the user.
 
 Report safety controls:
 
@@ -139,7 +139,7 @@ Report safety controls:
 
 ## CLI Safety Boundaries
 
-Phase 9 hardens command-line behavior without adding live capture capability.
+Command-line behavior is hardened without adding live capture capability.
 
 CLI safety controls:
 
@@ -154,7 +154,7 @@ CLI safety controls:
 
 ## CI Configuration Boundaries
 
-Phase 10 adds local workflow configuration for GitHub Actions CI, CodeQL, and
+The repository includes local workflow configuration for GitHub Actions CI, CodeQL, and
 Dependabot.
 
 CI/CodeQL configured but not yet GitHub-verified.
