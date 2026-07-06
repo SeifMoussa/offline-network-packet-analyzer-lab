@@ -1,14 +1,14 @@
 # Sample Schema
 
-Phase 3 defines synthetic sample shapes and implements safe local loaders for JSON, CSV, and text samples.
+The sample schema defines synthetic data shapes, with safe local loaders for JSON, CSV, and text samples.
 
-Phase 4 adds parser tests that use handcrafted synthetic byte arrays only. No binary sample files are added.
+Parser tests use handcrafted synthetic byte arrays only. No binary sample files are included.
 
-Phase 5 consumes loaded `PacketEvent` records to build flow and protocol summaries.
+Flow analysis consumes loaded `PacketEvent` records to build flow and protocol summaries.
 
-Phase 6 detections consume the same loaded event fields plus flow summaries. Rules may refer to safe synthetic fields such as `status`, `query_name`, `hostname`, `user_agent`, `destination_port`, `protocol`, and `byte_count`.
+Detections consume the same loaded event fields plus flow summaries. Rules may refer to safe synthetic fields such as `status`, `query_name`, `hostname`, `user_agent`, `destination_port`, `protocol`, and `byte_count`.
 
-Phase 8 reports consume the loader output, flow/protocol summaries, scored alerts, guidance, and redacted output structures. Reports do not require new sample fields.
+Reports consume the loader output, flow/protocol summaries, scored alerts, guidance, and redacted output structures. Reports do not require new sample fields.
 
 ## Sample Folders
 
@@ -21,7 +21,7 @@ No PCAP files or real packet captures are allowed.
 
 Raw byte fixtures are created inline in parser tests. They are not stored as binary files under `samples/raw/`.
 
-Phase 4 parser fixtures cover:
+Parser fixtures cover:
 
 - Ethernet header parsing
 - IPv4 header parsing
@@ -42,7 +42,7 @@ Supported loadable extensions:
 - `.csv`
 - `.txt`
 
-Directory inputs are scanned recursively by default. Phase 9 CLI commands expose `--no-recursive` to limit loading to direct child files. Unsupported files are skipped and listed in the load summary, or reported as controlled errors when a single unsupported file is the only input. Paths containing traversal segments are rejected.
+Directory inputs are scanned recursively by default. CLI commands expose `--no-recursive` to limit loading to direct child files. Unsupported files are skipped and listed in the load summary, or reported as controlled errors when a single unsupported file is the only input. Paths containing traversal segments are rejected.
 
 The loader does not make network calls, inspect network interfaces, open raw sockets, parse binary packet captures, or follow files outside the requested input root.
 
@@ -67,7 +67,7 @@ JSON files contain an array of objects. Records may include:
 - `scenario`: short synthetic scenario label
 - `notes`: optional notes, including approved synthetic marker names
 
-`samples/logs/malformed_records.json` intentionally contains incomplete and malformed records. Phase 3 counts those records safely instead of crashing the load.
+`samples/logs/malformed_records.json` intentionally contains incomplete and malformed records. The loader counts those records safely instead of crashing.
 
 ## CSV DNS-Like Shape
 
@@ -87,7 +87,7 @@ The `query_name` column must contain only `example.com`, `example.org`, `example
 timestamp source_ip destination_ip method host path user_agent status
 ```
 
-The text format is intentionally simple and is loaded into normalized event records in Phase 3.
+The text format is intentionally simple and is loaded into normalized event records.
 
 ## Normalized Event Model
 

@@ -1,6 +1,6 @@
 # Release Checklist
 
-Phase 11 prepares the project for publishing but does not publish the
+The current release-readiness work prepares the project for publishing but does not publish the
 repository, create tags, create releases, or claim hosted CI/CodeQL results.
 
 CI/CodeQL configured but not yet GitHub-verified.

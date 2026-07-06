@@ -17,7 +17,7 @@ This document maps project capabilities to defensive learning value and safety c
 | Area | Defensive value | Risk | Mitigation |
 | --- | --- | --- | --- |
 | Flow keys | Teaches how SOC tools group source, destination, protocol, and port metadata | Missing fields could crash aggregation | Missing or malformed records are skipped or counted safely |
-| Protocol summaries | Shows protocol and port distribution from synthetic logs | Could be mistaken for detection logic | Phase 5 summaries do not create alerts, scores, or findings |
+| Protocol summaries | Shows protocol and port distribution from synthetic logs | Could be mistaken for detection logic | Summaries do not create alerts, scores, or findings |
 | Top talkers | Demonstrates high-level traffic accounting | Could imply live monitoring | Summaries use only already-loaded local synthetic events |
 | Byte totals | Helps reason about synthetic volume patterns | Could drift into payload inspection | Only `byte_count` metadata is aggregated; payloads are not inspected |
 
@@ -31,7 +31,7 @@ stages so each behavior remains testable.
 | --- | --- | --- | --- |
 | Repeated connections | Shows basic connection-pattern triage | Could imply active scanning | Uses only loaded synthetic events |
 | DNS `.test` matching | Demonstrates domain-focused detection | Could introduce real IOCs | Rules use only `.test` and example domains |
-| High-volume flows | Shows synthetic volume anomaly review | Could be confused with scoring | Phase 6 emits alerts only, no scores |
+| High-volume flows | Shows synthetic volume anomaly review | Could be confused with scoring | Detection emits alerts only, with scoring handled separately |
 | User-agent markers | Demonstrates HTTP metadata detection | Could expose sensitive strings | Uses safe synthetic user-agent markers only |
 | Documentation-range destinations | Shows lab-safe public-range patterns | Could be mistaken for real external traffic | Uses RFC documentation ranges only |
 
@@ -83,4 +83,4 @@ hosted GitHub verification remain future work.
 | CodeQL workflow | Adds static analysis after publishing | Could imply current hosted verification | Checklist separates configuration from GitHub verification |
 | Dependabot | Keeps dependencies and actions visible | Could add irrelevant ecosystems | Docker updates are not configured |
 
-Phase 10 configures CI, CodeQL, and Dependabot locally. GitHub-hosted verification remains pending until the repository is published.
+CI, CodeQL, and Dependabot are configured locally. GitHub-hosted verification remains pending until the repository is published.

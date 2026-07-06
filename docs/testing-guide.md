@@ -1,6 +1,6 @@
 # Testing Guide
 
-Phase 2 adds safety inventory tests for the synthetic sample set.
+Safety inventory tests cover the synthetic sample set.
 
 The tests verify:
 
@@ -17,9 +17,9 @@ The tests verify:
 - `rules/signatures.yaml` exists and remains a safe synthetic placeholder
 - Sensitive marker samples use only approved synthetic markers
 
-Phase 3 adds loader, validation, model, and CLI tests.
+Loader, validation, model, and CLI tests cover the local input workflow.
 
-The Phase 3 tests verify:
+These tests verify:
 
 - JSON loader success
 - CSV loader success
@@ -38,9 +38,9 @@ The Phase 3 tests verify:
 - CLI sample validation success
 - CLI invalid input failure
 
-Phase 4 adds parser and parser safety tests.
+Parser and parser safety tests cover the byte-level parsing boundary.
 
-The Phase 4 tests verify:
+These tests verify:
 
 - Ethernet parsing, MAC formatting, EtherType parsing, payload extraction, truncation handling, and unsupported EtherType handling
 - IPv4 parsing, version/IHL bitmasking, invalid version handling, invalid IHL handling, out-of-bounds header length handling, protocol parsing, and IP formatting
@@ -49,9 +49,9 @@ The Phase 4 tests verify:
 - No unhandled exceptions on malformed synthetic bytes
 - No capture module, PCAP files, Scapy imports, socket capture implementation, raw socket constants, or parser file reads
 
-Phase 5 adds flow summary and summarize CLI tests.
+Flow summary and `summarize` CLI tests cover aggregation behavior.
 
-The Phase 5 tests verify:
+These tests verify:
 
 - Flow key creation
 - Aggregation by source, destination, protocol, and port
@@ -68,9 +68,9 @@ The Phase 5 tests verify:
 - `summarize` CLI invalid input failure
 - No live-capture CLI flags or payload/credential extraction patterns
 
-Phase 6 adds detection rule, alert, detection engine, and detect CLI tests.
+Detection rule, alert, detection engine, and `detect` CLI tests cover the detection workflow.
 
-The Phase 6 tests verify:
+These tests verify:
 
 - Default rules load
 - Rule IDs are unique
@@ -93,9 +93,9 @@ The Phase 6 tests verify:
 - Detect CLI JSON and text output
 - Detect CLI invalid input and invalid rule failures
 
-Phase 7 adds scoring, guidance, redaction, and sensitive-marker tests.
+Scoring, guidance, redaction, and sensitive-marker tests cover triage output safety.
 
-The Phase 7 tests verify:
+These tests verify:
 
 - Severity-to-score range mapping
 - Deterministic scoring
@@ -110,9 +110,9 @@ The Phase 7 tests verify:
 - Raw marker constants do not appear in detect JSON or text CLI output
 - No realistic credential extraction patterns are added
 
-Phase 8 adds report generation and report CLI tests.
+Report generation and report CLI tests cover the output workflow.
 
-The Phase 8 tests verify:
+These tests verify:
 
 - JSON report structure
 - Markdown report structure
@@ -128,9 +128,9 @@ The Phase 8 tests verify:
 - Parent output directory creation
 - Existing commands continue to pass
 
-Phase 9 adds CLI UX, negative-path, and expanded safety validation tests.
+CLI UX, negative-path, and expanded safety validation tests cover command-line hardening.
 
-The Phase 9 tests verify:
+These tests verify:
 
 - Help text for every command includes offline synthetic safety boundaries
 - Missing required `--input` and report `--output` fail clearly
@@ -146,9 +146,9 @@ The Phase 9 tests verify:
 - No live-capture modules, CLI flags, raw socket code, Scapy imports, PCAP dependencies, or packet capture files exist
 - Detect CLI output and generated reports contain `[REDACTED]` and no raw marker constants
 
-Phase 10 adds workflow, Dependabot, and documentation consistency tests.
+Workflow, Dependabot, and documentation consistency tests cover repository automation configuration.
 
-The Phase 10 tests verify:
+These tests verify:
 
 - CI workflow YAML parses locally
 - CI has Tests, Docs Safety Checks, and CLI Smoke jobs
