@@ -19,7 +19,6 @@ REQUIRED_DOCS = [
     ROOT / "docs" / "release-checklist.md",
     ROOT / "docs" / "portfolio-notes.md",
     ROOT / "TESTING_REPORT.md",
-    ROOT / "PROJECT_COMPLETION_CHECKLIST.md",
     ROOT / "CHANGELOG.md",
 ]
 REQUIRED_REPORTS = [

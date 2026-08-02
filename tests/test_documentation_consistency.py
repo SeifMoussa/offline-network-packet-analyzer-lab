@@ -22,7 +22,6 @@ def test_docs_are_honest_about_ci_codeql_verification_status() -> None:
         for path in [
             ROOT / "README.md",
             ROOT / "TESTING_REPORT.md",
-            ROOT / "PROJECT_COMPLETION_CHECKLIST.md",
             ROOT / "CHANGELOG.md",
         ]
     ).lower()

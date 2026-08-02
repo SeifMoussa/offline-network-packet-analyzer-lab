@@ -1,1 +1,1 @@
-"""HTTP detection module placeholder for Phase 6 organization."""
+"""Reserved for HTTP detection helpers that outgrow engine.py."""
