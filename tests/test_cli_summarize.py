@@ -23,8 +23,8 @@ def test_summarize_cli_json_output(capsys) -> None:
 
     assert exit_code == 0
     assert payload["input_path"] == str(SAMPLES)
-    assert payload["records_seen"] == 24
-    assert payload["events_loaded"] == 24
+    assert payload["records_seen"] == 33
+    assert payload["events_loaded"] == 33
     assert payload["malformed_records"] == 3
     assert payload["total_flows"] >= 1
     assert payload["protocol_counts"]["TCP"] >= 1

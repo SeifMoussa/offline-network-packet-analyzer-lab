@@ -118,6 +118,16 @@ rules:
       - 203.0.113.0/24
     guidance: Treat as a synthetic lab reference and verify the destination range is expected.
 
+  - rule_id: NET-007
+    title: Regular-interval beaconing pattern
+    description: Detects a synthetic source contacting the same destination and port at consistently low-jitter intervals, the classic C2 check-in signature.
+    severity: high
+    confidence: medium
+    category: network-pattern
+    enabled: true
+    detector_type: beaconing_interval
+    guidance: Compare the interval pattern with known scheduled tasks or health checks before escalating, since low-jitter check-ins to an unfamiliar destination are a beaconing candidate.
+
   - rule_id: SENS-001
     title: Synthetic sensitive marker detected
     description: Detects approved synthetic sensitive markers and emits redacted evidence only.

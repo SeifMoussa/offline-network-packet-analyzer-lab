@@ -119,7 +119,7 @@ def test_cli_min_severity_filters_detect_json(capsys) -> None:
 
     assert exit_code == 0
     assert payload["min_severity"] == "high"
-    assert payload["alert_count"] == 1
+    assert payload["alert_count"] == 2
     assert {alert["severity"] for alert in payload["alerts"]} == {"high"}
 
 

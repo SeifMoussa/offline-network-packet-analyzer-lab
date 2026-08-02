@@ -72,6 +72,18 @@ def test_internal_to_documentation_range_destination_detection() -> None:
     assert "NET-006" in rule_ids(alerts)
 
 
+def test_beaconing_interval_detection_fires_on_regular_intervals() -> None:
+    alerts = alerts_for(LOGS / "suspicious_connections.json")
+
+    assert "NET-007" in rule_ids(alerts)
+
+
+def test_beaconing_interval_detection_does_not_fire_on_irregular_intervals() -> None:
+    alerts = alerts_for(LOGS / "normal_traffic.json")
+
+    assert "NET-007" not in rule_ids(alerts)
+
+
 def test_clean_normal_sample_has_no_high_or_critical_alerts() -> None:
     alerts = alerts_for(LOGS / "normal_traffic.json")
 

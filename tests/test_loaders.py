@@ -13,8 +13,8 @@ LOGS = SAMPLES / "logs"
 def test_json_loader_success() -> None:
     result = load_file(LOGS / "normal_traffic.json")
 
-    assert result.records_seen == 3
-    assert len(result.events) == 3
+    assert result.records_seen == 7
+    assert len(result.events) == 7
     assert result.malformed_records == 0
     assert result.events[0].source_ip == "10.0.0.10"
 
@@ -78,7 +78,7 @@ def test_directory_inventory_recursive_scan() -> None:
 def test_single_file_loading() -> None:
     result = load_input(LOGS / "normal_traffic.json")
 
-    assert result.records_seen == 3
+    assert result.records_seen == 7
     assert len(result.files_loaded) == 1
 
 

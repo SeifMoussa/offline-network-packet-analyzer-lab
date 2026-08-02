@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import statistics
 from collections.abc import Iterable
+from datetime import datetime
 from ipaddress import ip_address, ip_network
 
 from offline_packet_analyzer.flows.summary import summarize_flows
@@ -26,6 +28,8 @@ DETECTION_SAFETY_NOTE = (
 )
 RISK_ORDER = {"informational": 0, "low": 1, "medium": 2, "high": 3, "critical": 4}
 SEVERITY_ORDER = RISK_ORDER
+DEFAULT_BEACON_MIN_EVENTS = 4
+DEFAULT_BEACON_MAX_JITTER_RATIO = 0.15
 
 
 def _valid_events(events: Iterable[PacketEvent]) -> list[PacketEvent]:
@@ -262,6 +266,69 @@ def _detect_synthetic_sensitive_marker(
     return alerts
 
 
+def _parse_timestamp(value: str | None) -> datetime | None:
+    if not value:
+        return None
+    try:
+        return datetime.fromisoformat(value.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+
+
+def _detect_beaconing_interval(rule: DetectionRule, events: list[PacketEvent]) -> list[Alert]:
+    grouped: dict[tuple[str, str, int | None], list[tuple[datetime, PacketEvent]]] = {}
+    for event in events:
+        if not event.source_ip or not event.destination_ip:
+            continue
+        timestamp = _parse_timestamp(event.timestamp)
+        if timestamp is None:
+            continue
+        key = (event.source_ip, event.destination_ip, event.destination_port)
+        grouped.setdefault(key, []).append((timestamp, event))
+
+    min_events = rule.min_events or DEFAULT_BEACON_MIN_EVENTS
+    max_jitter_ratio = (
+        rule.max_jitter_ratio
+        if rule.max_jitter_ratio is not None
+        else DEFAULT_BEACON_MAX_JITTER_RATIO
+    )
+
+    alerts = []
+    for key, group in grouped.items():
+        if len(group) < min_events:
+            continue
+        ordered = sorted(group, key=lambda item: item[0])
+        intervals = [
+            (later - earlier).total_seconds()
+            for (earlier, _), (later, _) in zip(ordered, ordered[1:], strict=False)
+        ]
+        if not intervals or any(interval <= 0 for interval in intervals):
+            continue
+        mean_interval = statistics.fmean(intervals)
+        jitter_ratio = statistics.pstdev(intervals) / mean_interval
+        if jitter_ratio > max_jitter_ratio:
+            continue
+
+        source_ip, destination_ip, destination_port = key
+        alerts.append(
+            _alert(
+                rule,
+                evidence=(
+                    f"{source_ip} contacted {destination_ip}:{destination_port} "
+                    f"{len(group)} times at roughly {mean_interval:.1f}s intervals "
+                    f"with {jitter_ratio:.2%} jitter"
+                ),
+                event=ordered[0][1],
+                metadata={
+                    "event_count": len(group),
+                    "mean_interval_seconds": round(mean_interval, 2),
+                    "jitter_ratio": round(jitter_ratio, 4),
+                },
+            )
+        )
+    return alerts
+
+
 DETECTORS = {
     "repeated_connections": _detect_repeated_connections,
     "many_destination_ports": _detect_many_destination_ports,
@@ -272,6 +339,7 @@ DETECTORS = {
     "suspicious_user_agent": _detect_suspicious_user_agent,
     "documentation_range_destination": _detect_documentation_range_destination,
     "synthetic_sensitive_marker": _detect_synthetic_sensitive_marker,
+    "beaconing_interval": _detect_beaconing_interval,
 }
 
 

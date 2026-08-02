@@ -32,6 +32,8 @@ class DetectionRule:
     mismatches: list[dict[str, Any]] = field(default_factory=list)
     destination_ranges: list[str] = field(default_factory=list)
     status_keywords: list[str] = field(default_factory=list)
+    min_events: int | None = None
+    max_jitter_ratio: float | None = None
 
 
 class RuleValidationError(ValueError):
@@ -80,6 +82,8 @@ def _to_rule(rule: dict[str, Any]) -> DetectionRule:
         mismatches=list(rule.get("mismatches", [])),
         destination_ranges=list(rule.get("destination_ranges", [])),
         status_keywords=list(rule.get("status_keywords", [])),
+        min_events=int(rule["min_events"]) if "min_events" in rule else None,
+        max_jitter_ratio=float(rule["max_jitter_ratio"]) if "max_jitter_ratio" in rule else None,
     )
 
 
