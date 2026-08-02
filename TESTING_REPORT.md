@@ -1,261 +1,141 @@
 # Testing Report
 
-## Phase 1
+This report describes how the project is tested locally and what each area
+of the test suite covers. All numbers below reflect the latest local run;
+CI/CodeQL configured but not yet GitHub-verified.
 
-Phase 1 adds basic package and CLI tests only.
+## Package and CLI basics
 
-## Phase 2
+Baseline tests confirm the package imports cleanly and the CLI entry point
+responds to `--help` and the core subcommands without touching any live
+network resources.
 
-Phase 2 adds sample inventory and safety validation tests.
+## Sample inventory and safety validation
 
-Coverage added:
-
-- Required sample folders and files
-- Text readability and size limits
-- Expected sample file extensions
-- Reserved IP range checks
-- Safe domain checks
+- Required sample folders and files exist
+- Text readability and size limits are enforced
+- Only expected sample file extensions are accepted
+- Reserved IP range and safe domain checks
 - Credential-looking value checks
 - Synthetic marker allowlist checks
-- Source safety scans for prohibited live-capture implementation patterns
-- PCAP file absence
-- Safe rule placeholder existence
+- Source scans confirm no live-capture implementation patterns are present
+- No PCAP files exist anywhere in the repo
+- Safe rule placeholders exist and load correctly
 
-## Phase 3
-
-Phase 3 adds loader, validation, model, and CLI command tests.
-
-Coverage added:
+## Loaders, validation, and models
 
 - JSON, CSV, and text loader success paths
-- Malformed JSON handled without crashing
-- Malformed records counted safely
-- Unsupported extensions skipped cleanly
-- Recursive directory inventory
-- Single-file loading
-- Path traversal and nonexistent input rejection
-- Packet capture suffix rejection
+- Malformed JSON is handled without crashing the loader
+- Malformed records are counted rather than silently dropped
+- Unsupported file extensions are skipped cleanly
+- Recursive directory inventory and single-file loading
+- Path traversal and nonexistent input are rejected
+- Packet-capture file suffixes are rejected outright
 - `PacketEvent` and `LoadResult` shape checks
-- Sample tree validation
-- CLI inventory JSON output
-- CLI sample validation success
-- CLI invalid input failure
+- Sample tree validation and the `inventory`/`validate-samples` CLI commands
 
-Latest local result:
+## Protocol parsers
 
-```text
-41 passed
-ruff check: All checks passed
-ruff format --check: 28 files already formatted
-```
+Parser tests use handcrafted synthetic byte fixtures only — no binary sample
+files, PCAP files, or copied real packet bytes.
 
-## Phase 4
+- Ethernet: success path, MAC formatting, EtherType parsing, payload
+  extraction, truncation handling, unsupported EtherType handling
+- IPv4: success path, version/IHL bitmasking, invalid version/IHL handling,
+  header length bounds, protocol parsing, source/destination formatting
+- TCP: success path, invalid/oversized data offset handling, truncation
+  handling
+- UDP: success path, invalid/oversized length handling, truncation handling
+- Parser safety checks confirm no capture module, no PCAP files, no Scapy,
+  no socket-based capture implementation, and no parser file reads exist
 
-Phase 4 adds binary protocol parser tests using handcrafted synthetic bytes only.
-
-Coverage added:
-
-- Ethernet parser success, MAC formatting, EtherType parsing, payload extraction, truncation handling, and unsupported EtherType handling
-- IPv4 parser success, version/IHL bitmasking, invalid version handling, invalid IHL handling, header length bounds, protocol parsing, and source/destination formatting
-- TCP parser success, invalid data offset handling, oversized offset handling, and truncation handling
-- UDP parser success, invalid length handling, oversized length handling, and truncation handling
-- Parser safety checks for no capture module, no PCAP files, no Scapy, no socket capture implementation, and no parser file reads
-
-Latest local result:
-
-```text
-63 passed
-ruff check: All checks passed
-ruff format --check: 38 files already formatted
-```
-
-## Phase 5
-
-Phase 5 adds flow extraction, protocol summaries, and summarize CLI tests.
-
-Coverage added:
+## Flow and protocol summaries
 
 - Flow key creation and missing-field handling
 - Flow aggregation by source, destination, protocol, and port
 - Event and byte totals per flow
 - Protocol and destination port counts
-- Top source, destination, and talker summaries
-- Deterministic ordering
-- Malformed event handling
-- Empty input behavior
-- `summarize` CLI JSON and text output
-- `summarize` CLI invalid input failure
-- Safety checks for no live-capture flags, payload dumping, or credential extraction patterns
+- Top source, destination, and talker summaries with deterministic ordering
+- Malformed event handling and empty-input behavior
+- `summarize` CLI JSON and text output, plus invalid-input failure
+- Safety checks confirm no live-capture flags, payload dumping, or
+  credential-extraction patterns exist
 
-Latest local result:
+## Detection engine
 
-```text
-76 passed
-ruff check: All checks passed
-ruff format --check: 42 files already formatted
-```
-
-## Phase 6
-
-Phase 6 adds YAML rule loading, detection engine behavior, alert model tests, and detect CLI tests.
-
-Coverage added:
-
-- Default detection rule loading
-- Rule schema validation and duplicate ID failure
-- Disabled rule skipping
-- All approved Phase 6 detection categories
-- Normal sample high/critical absence
-- Malformed record skipping
+- Default detection rule loading and schema validation, including duplicate
+  rule ID rejection
+- Disabled rules are skipped
+- Every detection category ships at least one passing and one non-firing
+  test case
+- The clean/normal sample produces no high or critical alerts
+- Malformed records are skipped rather than raising
 - Deterministic alert ordering
-- Alert dictionary shape without score fields
-- Detect CLI JSON and text output
-- Detect CLI invalid input and invalid rule file failure
+- Alert dictionary shape checks
+- `detect` CLI JSON and text output, plus invalid-input and invalid-rule-file
+  failure paths
 
-Latest local result:
+## Scoring, guidance, and redaction
 
-```text
-102 passed
-ruff check: All checks passed
-ruff format --check: 51 files already formatted
-```
+- Severity-to-score range mapping and risk-level calculation
+- Alert score fields and deterministic scoring factors
+- Defensive guidance coverage for every default rule
+- Approved synthetic marker detection and recursive redaction without
+  mutating the input
+- `SENS-001` redacted evidence, and confirmation that raw markers never
+  reach `detect` CLI output
 
-## Phase 7
+## Reporting
 
-Phase 7 adds deterministic risk scoring, triage guidance, redaction, and synthetic sensitive-marker detection tests.
-
-Coverage added:
-
-- Severity-to-score range mapping
-- Risk-level calculation
-- Alert score fields
-- Scoring factors and deterministic scoring
-- Defensive guidance coverage for default rules
-- Approved synthetic marker detection
-- Recursive redaction without input mutation
-- `SENS-001` redacted evidence
-- Detect CLI JSON/text output redaction
-- Raw marker absence from detect CLI output
-
-Latest local result:
-
-```text
-119 passed
-ruff check: All checks passed
-ruff format --check: 60 files already formatted
-```
-
-## Phase 8
-
-Phase 8 adds final JSON and Markdown report generation, report CLI tests, and example artifacts.
-
-Coverage added:
-
-- JSON report structure
-- Markdown report structure
-- Safety disclaimer and limitations
-- Flow/protocol summary sections
-- Detection summary and alert details
-- Score and risk fields
-- Redaction summary
+- JSON and Markdown report structure
+- Safety disclaimer and limitations sections
+- Flow/protocol summary, detection summary, and alert-detail sections
+- Score and risk fields, and the redaction summary
 - Report output redaction
-- CLI report JSON/Markdown file creation
-- CLI invalid format and invalid input behavior
-- Parent output directory creation
+- `report` CLI JSON/Markdown file creation, invalid format/input handling,
+  and parent output directory creation
 
-Latest local result:
+## CLI hardening and negative paths
 
-```text
-131 passed
-ruff check: All checks passed
-ruff format --check: 65 files already formatted
-```
+- Help text includes the offline/synthetic safety boundaries for every
+  command
+- Missing required input/output arguments fail as expected
+- Traversal-like input and output paths are rejected
+- Unsupported single-file extensions are handled without crashing
+- Invalid rule paths and invalid rule YAML are rejected
+- Invalid `--min-severity` and `--fail-on` values are rejected
+- `--min-severity` filtering and `--fail-on` exit-code behavior are verified
+  for both `detect` and `report`
+- Empty directories and `--no-recursive` scans behave as documented
+- Expanded safety checks confirm no live-capture modules, forbidden CLI
+  flags, PCAP dependencies, raw socket code, or Scapy imports exist anywhere
+  in the source tree
 
-## Phase 9
+## CI, CodeQL, and documentation checks
 
-Phase 9 adds CLI UX hardening, negative-path tests, and expanded safety validation.
+- CI workflow YAML parses and defines the expected jobs
+- CI pins Python 3.12 and enforces the coverage threshold
+- CI runs the documentation safety check and a CLI smoke test
+- CodeQL workflow runs Python analysis with the `security-and-quality` query
+  pack
+- Dependabot is configured for weekly pip and GitHub Actions updates, with
+  no Docker ecosystem entry
+- `scripts/check-docs.py` runs locally and passes
+- Documentation is honest about CI/CodeQL verification status and README
+  badges point at the correct repository path
 
-Coverage added:
-
-- Help text safety boundary checks for all CLI commands
-- Missing required input/output argument failures
-- Traversal-like input and output rejection
-- Unsupported single-file extension handling
-- Invalid rule path and invalid rule YAML handling
-- Invalid `--min-severity` and `--fail-on` handling
-- Detect/report `--min-severity` filtering
-- Detect `--fail-on` non-zero and zero exit behavior
-- Empty directory behavior
-- `--no-recursive` directory scan behavior
-- Report parent directory creation remains covered
-- Expanded checks for no live-capture modules, forbidden CLI flags, PCAP dependencies, raw socket code, or Scapy imports
-- Detect/report redaction checks for raw marker absence
-
-Latest local result:
-
-```text
-154 passed
-ruff check: All checks passed
-ruff format --check: 67 files already formatted
-```
-
-## Phase 10
-
-Phase 10 adds GitHub Actions CI configuration, CodeQL configuration, Dependabot
-configuration, docs safety checks, and workflow tests.
-
-CI/CodeQL configured but not yet GitHub-verified.
-
-Coverage added:
-
-- CI workflow parse and job checks
-- CI Python 3.12 and coverage threshold checks
-- CI docs safety and CLI smoke command checks
-- CodeQL Python analysis and `security-and-quality` query checks
-- Dependabot weekly pip and GitHub Actions update checks
-- Docker update absence check
-- `scripts/check-docs.py` local execution check
-- Documentation honesty checks for CI/CodeQL verification status
-- Future badge repository path checks
-
-Latest local result:
-
-```text
-164 passed
-coverage: 92.50%
-ruff check: All checks passed
-ruff format --check: 70 files already formatted
-docs-check: all documentation safety checks passed
-```
-
-## Phase 11
-
-Phase 11 adds documentation polish, final README structure, release preparation
-notes, portfolio copy, and final local QA before publishing.
-
-CI/CodeQL configured but not yet GitHub-verified.
-
-Coverage added by process, not new product features:
-
-- README recruiter-readiness review
-- Safety, threat matrix, sample schema, detection, testing, release, and
-  portfolio docs review
-- Stable example report review
-- `RELEASE.md` publishing and portfolio draft material
-- Git hygiene review before publishing
-
-Latest local result:
+## Latest local result
 
 ```text
 164 passed
 coverage: 92.50%
 coverage gate: 90%
 ruff check: All checks passed
-ruff format --check: 70 files already formatted
+ruff format --check: all files already formatted
 docs-check: all documentation safety checks passed
 ```
 
-Required checks:
+## Required checks
 
 ```bash
 python -m pytest

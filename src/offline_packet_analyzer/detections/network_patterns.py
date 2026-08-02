@@ -1,1 +1,1 @@
-"""Network-pattern detection module placeholder for Phase 6 organization."""
+"""Reserved for network-pattern detection helpers that outgrow engine.py."""
