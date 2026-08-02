@@ -33,6 +33,7 @@ Each rule includes:
 - `NET-005`: repeated failed connection marker
 - `HTTP-001`: suspicious synthetic HTTP user-agent marker
 - `NET-006`: internal-to-documentation-range destination pattern
+- `NET-007`: regular-interval beaconing pattern (low-jitter check-in timing)
 - `SENS-001`: synthetic sensitive marker detected with redacted evidence
 
 ## Safety Rules

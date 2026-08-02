@@ -34,6 +34,11 @@ TRIAGE_GUIDANCE = {
     "NET-006": (
         "Confirm that documentation-range destinations are expected synthetic lab references."
     ),
+    "NET-007": (
+        "Compare the interval pattern against known scheduled tasks or health checks and "
+        "confirm whether the low-jitter check-ins to this destination are expected before "
+        "treating them as a beacon candidate."
+    ),
     "SENS-001": (
         "Confirm whether the redacted synthetic marker was intentionally placed, then remove "
         "exposed test data from synthetic samples if it is not needed."

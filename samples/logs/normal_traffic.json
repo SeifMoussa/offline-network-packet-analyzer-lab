@@ -37,5 +37,57 @@
     "hostname": "example.org",
     "synthetic_marker": true,
     "scenario": "documentation_range_web_reference"
+  },
+  {
+    "timestamp": "2026-06-05T08:03:00Z",
+    "source_ip": "10.0.0.13",
+    "destination_ip": "198.51.100.60",
+    "source_port": 49154,
+    "destination_port": 443,
+    "protocol": "TCP",
+    "byte_count": 512,
+    "status": "allowed",
+    "hostname": "lab-client",
+    "synthetic_marker": true,
+    "scenario": "irregular_interval_traffic"
+  },
+  {
+    "timestamp": "2026-06-05T08:03:10Z",
+    "source_ip": "10.0.0.13",
+    "destination_ip": "198.51.100.60",
+    "source_port": 49155,
+    "destination_port": 443,
+    "protocol": "TCP",
+    "byte_count": 480,
+    "status": "allowed",
+    "hostname": "lab-client",
+    "synthetic_marker": true,
+    "scenario": "irregular_interval_traffic"
+  },
+  {
+    "timestamp": "2026-06-05T08:04:05Z",
+    "source_ip": "10.0.0.13",
+    "destination_ip": "198.51.100.60",
+    "source_port": 49156,
+    "destination_port": 443,
+    "protocol": "TCP",
+    "byte_count": 604,
+    "status": "allowed",
+    "hostname": "lab-client",
+    "synthetic_marker": true,
+    "scenario": "irregular_interval_traffic"
+  },
+  {
+    "timestamp": "2026-06-05T08:04:25Z",
+    "source_ip": "10.0.0.13",
+    "destination_ip": "198.51.100.60",
+    "source_port": 49157,
+    "destination_port": 443,
+    "protocol": "TCP",
+    "byte_count": 553,
+    "status": "allowed",
+    "hostname": "lab-client",
+    "synthetic_marker": true,
+    "scenario": "irregular_interval_traffic"
   }
 ]

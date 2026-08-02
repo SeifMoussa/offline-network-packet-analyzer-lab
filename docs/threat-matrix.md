@@ -34,6 +34,7 @@ stages so each behavior remains testable.
 | High-volume flows | Shows synthetic volume anomaly review | Could be confused with scoring | Detection emits alerts only, with scoring handled separately |
 | User-agent markers | Demonstrates HTTP metadata detection | Could expose sensitive strings | Uses safe synthetic user-agent markers only |
 | Documentation-range destinations | Shows lab-safe public-range patterns | Could be mistaken for real external traffic | Uses RFC documentation ranges only |
+| Beaconing intervals | Demonstrates statistical detection of regular check-in timing (a common C2 signature) | Low-jitter intervals could occur from legitimate scheduled tasks or health checks | Guidance directs analysts to compare against known scheduled activity before escalating |
 
 Detections produce structured alerts with defensive guidance. Scoring,
 redaction, and reporting are implemented separately and covered by tests.

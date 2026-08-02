@@ -145,6 +145,7 @@ Default synthetic detections include:
 - Repeated failed connection marker
 - Suspicious synthetic HTTP user-agent marker
 - Internal-to-documentation-range destination pattern
+- Regular-interval beaconing pattern (low-jitter check-in timing)
 - Synthetic sensitive-marker detection with redacted evidence
 
 Rules live in [rules/signatures.yaml](rules/signatures.yaml).
@@ -237,8 +238,8 @@ files of a local directory.
 
 Latest local validation:
 
-- `164 passed`
-- `92.50%` coverage
+- `166 passed`
+- `92.32%` coverage
 - `90%` coverage gate
 - Ruff check passed
 - Ruff format check passed

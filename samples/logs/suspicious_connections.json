@@ -46,5 +46,65 @@
     "status": "failed",
     "synthetic_marker": true,
     "scenario": "many_destination_ports"
+  },
+  {
+    "timestamp": "2026-06-05T09:05:00Z",
+    "source_ip": "10.0.0.40",
+    "destination_ip": "203.0.113.50",
+    "source_port": 51000,
+    "destination_port": 443,
+    "protocol": "TCP",
+    "byte_count": 240,
+    "status": "allowed",
+    "synthetic_marker": true,
+    "scenario": "beaconing_pattern"
+  },
+  {
+    "timestamp": "2026-06-05T09:06:00Z",
+    "source_ip": "10.0.0.40",
+    "destination_ip": "203.0.113.50",
+    "source_port": 51001,
+    "destination_port": 443,
+    "protocol": "TCP",
+    "byte_count": 240,
+    "status": "allowed",
+    "synthetic_marker": true,
+    "scenario": "beaconing_pattern"
+  },
+  {
+    "timestamp": "2026-06-05T09:07:00Z",
+    "source_ip": "10.0.0.40",
+    "destination_ip": "203.0.113.50",
+    "source_port": 51002,
+    "destination_port": 443,
+    "protocol": "TCP",
+    "byte_count": 240,
+    "status": "allowed",
+    "synthetic_marker": true,
+    "scenario": "beaconing_pattern"
+  },
+  {
+    "timestamp": "2026-06-05T09:08:00Z",
+    "source_ip": "10.0.0.40",
+    "destination_ip": "203.0.113.50",
+    "source_port": 51003,
+    "destination_port": 443,
+    "protocol": "TCP",
+    "byte_count": 240,
+    "status": "allowed",
+    "synthetic_marker": true,
+    "scenario": "beaconing_pattern"
+  },
+  {
+    "timestamp": "2026-06-05T09:09:00Z",
+    "source_ip": "10.0.0.40",
+    "destination_ip": "203.0.113.50",
+    "source_port": 51004,
+    "destination_port": 443,
+    "protocol": "TCP",
+    "byte_count": 240,
+    "status": "allowed",
+    "synthetic_marker": true,
+    "scenario": "beaconing_pattern"
   }
 ]

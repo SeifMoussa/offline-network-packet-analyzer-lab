@@ -27,7 +27,7 @@ def test_json_report_structure() -> None:
     assert payload["schema_version"] == "1.0"
     assert payload["tool_name"] == "offline-network-packet-analyzer-lab"
     assert payload["safety_scope"]["offline_only"] is True
-    assert payload["records_seen"] == 24
+    assert payload["records_seen"] == 33
     assert "flow_summary" in payload
     assert "protocol_summary" in payload
     assert "detection_summary" in payload
